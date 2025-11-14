@@ -1,0 +1,21 @@
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbit-mq
+    ports:
+        - "5672:5672"       # RabbitMQ main port
+        - "15672:15672"     # RabbitMQ management UI port
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+      - rabbitmq-log:/var/log/rabbitmq
+    networks:
+      - rabbit-mq
+
+volumes:
+  rabbitmq-data:
+  rabbitmq-log:
+
+networks:
+  rabbit-mq:
+    driver: bridge
